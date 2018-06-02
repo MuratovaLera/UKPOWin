@@ -1,2 +1,0 @@
-# UKPOWin
-Tests C#.AppVeyor.
