@@ -1,4 +1,3 @@
-C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\UITests\bin\Debug\UITests.dll.config
 C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\UITests\bin\Debug\UITests.dll
 C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\UITests\bin\Debug\UITests.pdb
 C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\UITests\bin\Debug\Castle.Core.dll
