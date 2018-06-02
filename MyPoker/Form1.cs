@@ -46,8 +46,8 @@ namespace MyPoker
           //  DealCards.getDeal().setComponents(components);
             
            DealCards.getDeal().Deal();
-            
 
+         
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -185,43 +185,93 @@ namespace MyPoker
 
         private void button5_Click(object sender, EventArgs e)
         {
-            StreamReader s = File.OpenText(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt");
-            string read = null;
-            bool l = true;
-            while ((read = s.ReadLine()) != null)
+            int i = 0;
+            
+            try
             {
-                string[] tempArray = read.Split(' ');
-                if (tempArray[0].ToString() == PlayerName.Text)
+                StreamReader s = File.OpenText(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt");
+                string read = null;
+                bool l = true;
+                while ((read = s.ReadLine()) != null)
                 {
-                    PlayerAmount.Text = tempArray[1].ToString();
-                    MessageBox.Show("С возвращением " + PlayerName.Text);
-                    l = false;
-                    button1.Enabled = true;
-                }
+                    string[] tempArray = read.Split(' ');
+                    if (tempArray[0].ToString() == PlayerName.Text)
+                    {
+                        PlayerAmount.Text = tempArray[1].ToString();
+                        MessageBox.Show("С возвращением " + PlayerName.Text);
+                        l = false;
+                        button1.Enabled = true;
+                    }
 
+                }
+                s.Close();
+                if (l)
+                {
+                    DialogResult result = MessageBox.Show("К сожалению мы Вас не смогли найти, доюавить Вас в нашу базу?", "Warning",
+                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        File.AppendAllText(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt", "\n" + PlayerName.Text + " 5000", Encoding.UTF8);
+                        PlayerAmount.Text = " 5000";
+                        button1.Enabled = true;
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        //code for No
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        //code for Cancel
+                    }
+
+                }
+                i = 1;
             }
-            s.Close();
-            if (l)
+            catch (Exception ex) { };
+            if (i != 1)
             {
-                DialogResult result = MessageBox.Show("К сожалению мы Вас не смогли найти, доюавить Вас в нашу базу?", "Warning",
-                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
+                try
                 {
-                    File.AppendAllText(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt", "\n" + PlayerName.Text + " 5000", Encoding.UTF8);
-                    PlayerAmount.Text = " 5000";
-                    button1.Enabled = true;
-                }
-                else if (result == DialogResult.No)
-                {
-                    //code for No
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    //code for Cancel
-                }
 
+                    StreamReader s = File.OpenText("..\\..\\..\\MyPoker\\bin\\Debug\\PlayerInfo\\Player.txt");
+                    string read = null;
+                    bool l = true;
+                    while ((read = s.ReadLine()) != null)
+                    {
+                        string[] tempArray = read.Split(' ');
+                        if (tempArray[0].ToString() == PlayerName.Text)
+                        {
+                            PlayerAmount.Text = tempArray[1].ToString();
+                            MessageBox.Show("С возвращением " + PlayerName.Text);
+                            l = false;
+                            button1.Enabled = true;
+                        }
+
+                    }
+                    s.Close();
+                    if (l)
+                    {
+                        DialogResult result = MessageBox.Show("К сожалению мы Вас не смогли найти, доюавить Вас в нашу базу?", "Warning",
+                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Yes)
+                        {
+                            File.AppendAllText("..\\..\\..\\MyPoker\\bin\\Debug\\PlayerInfo\\Player.txt", "\n" + PlayerName.Text + " 5000", Encoding.UTF8);
+                            PlayerAmount.Text = " 5000";
+                            button1.Enabled = true;
+                        }
+                        else if (result == DialogResult.No)
+                        {
+                            //code for No
+                        }
+                        else if (result == DialogResult.Cancel)
+                        {
+                            //code for Cancel
+                        }
+
+                    }
+                }
+                catch (Exception ex) { };
             }
-
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -231,18 +281,22 @@ namespace MyPoker
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show("Ваши данные успели сохраниться. Приходите еще!");
+            MessageBox.Show("Ваши данные успели сохраниться. Приходите еще!","Bye");
             string str = string.Empty;
-            using (System.IO.StreamReader reader = System.IO.File.OpenText(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt"))
+            try
             {
-                str = reader.ReadToEnd();
-            }
-            str = str.Replace(PlayerName.Text + " " + PlayerAmount.Text, PlayerName.Text + " " + textBox1.Text);
+                using (System.IO.StreamReader reader = System.IO.File.OpenText(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt"))
+                {
+                    str = reader.ReadToEnd();
+                }
+                str = str.Replace(PlayerName.Text + " " + PlayerAmount.Text, PlayerName.Text + " " + textBox1.Text);
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt"))
-            {
-                file.Write(str);
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/PlayerInfo/Player.txt"))
+                {
+                    file.Write(str);
+                }
             }
+            catch (Exception es) { };
         }
 
         private void textBox2_Leave(object sender, EventArgs e)

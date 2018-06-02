@@ -85,8 +85,19 @@ namespace MyPoker
 
         public static void DrawCardSuitValueRobot(Card card, int i, DealCards temp)
         {
-            myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/" + card.MyValue + "_" + card.MySuit + ".bmp");
-           // myPicBox[i].Name = "Picbox" + card.MyValue + "_" + card.MySuit;
+            try {
+                myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/" + card.MyValue + "_" + card.MySuit + ".bmp");
+            }
+            catch (Exception ex) { };
+
+            try
+            {
+    
+                myPicBox[i].Image = Image.FromFile("..\\..\\..\\MyPoker\\bin\\Debug\"CardIm\\" + card.MyValue + "_" + card.MySuit + ".bmp");
+
+            }
+            catch (Exception ex) { };
+            // myPicBox[i].Name = "Picbox" + card.MyValue + "_" + card.MySuit;
 
         }
 
@@ -94,15 +105,26 @@ namespace MyPoker
         public static void DrawCardSuitValue(Card card, int i, DealCards temp)
         {
             //i = i - 1;
-           //if (NewGame)
-           //{
-           //   NewGame=ListCard(temp);
-           //}
-           // if (temp.getControls().Find("PicBox"+i.ToString(), true)) 
-          //  PictureBox myPicBox = new PictureBox();
+            //if (NewGame)
+            //{
+            //   NewGame=ListCard(temp);
+            //}
+            // if (temp.getControls().Find("PicBox"+i.ToString(), true)) 
+            //  PictureBox myPicBox = new PictureBox();
 
-
-            myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/" + card.MyValue + "_" + card.MySuit + ".bmp");
+            try
+            {
+                myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/" + card.MyValue + "_" + card.MySuit + ".bmp");
+            }
+            catch (Exception ex) { };
+            try
+            {
+              
+                myPicBox[i].Image = Image.FromFile("..\\..\\..\\MyPoker\\bin\\Debug\\CardIm\\" + card.MyValue + "_" + card.MySuit + ".bmp");
+              
+            }
+            catch (Exception ex) { };
+           // myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/" + card.MyValue + "_" + card.MySuit + ".bmp");
             myPicBox[i].Name = "Picbox" + card.MyValue + "_" + card.MySuit;
             if (i < 2)
             {
@@ -112,7 +134,18 @@ namespace MyPoker
             else
                 if (i<4)
             {
-                myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/Shirt"  + ".bmp");
+                try
+                {
+                    myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/Shirt" + ".bmp");
+                }
+                catch (Exception ex) { };
+                try
+                {
+                  
+                    myPicBox[i].Image = Image.FromFile("..\\..\\..\\MyPoker\\bin\\Debug\\CardIm\\Shirt" + ".bmp");
+                }
+                catch (Exception ex) { };
+                // myPicBox[i].Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/CardIm/Shirt"  + ".bmp");
                 myPicBox[i].Visible = true;
 
             }

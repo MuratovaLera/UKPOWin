@@ -203,22 +203,24 @@ namespace MyPoker
 
         private int Straight()
         {
-            // Card[] total = Array.FindAll(cards, element => element.count == 1);
-            Card[] total = cards;
-            //   if (total.Length == 5)
-          //  {
+            try
+            {
+                // Card[] total = Array.FindAll(cards, element => element.count == 1);
+                Card[] total = cards;
+                //   if (total.Length == 5)
+                //  {
                 int i;
                 int j = 0;
-                for (i = 1; i < 7; i++,j++)
+                for (i = 1; i < 7; i++, j++)
                 {
                     if (total[i - 1].MyValue == total[i].MyValue)
                     {
                         j--;
                         continue;
                     }
-                    if (total[i - 1].MyValue + 1 != total[i].MyValue)  
-                        j=0;
-                  
+                    if (total[i - 1].MyValue + 1 != total[i].MyValue)
+                        j = 0;
+
                 }
                 if (j >= 5)
                 {
@@ -234,16 +236,18 @@ namespace MyPoker
                             handValue.Total += (int)(Array.FindAll(cards, element => element.count == 1))[(Array.FindAll(cards, element => element.count == 1)).Length - 1].MyValue;
                             return 2;
                         }
-                        
+
                     }
 
-                    handValue.Total = (int)(Array.FindAll(cards, element => element.count == 1))[(Array.FindAll(cards, element => element.count == 1)).Length-1].MyValue;
+                    handValue.Total = (int)(Array.FindAll(cards, element => element.count == 1))[(Array.FindAll(cards, element => element.count == 1)).Length - 1].MyValue;
                     return 3;
 
                 }
 
 
-            //}
+                //}
+            }
+            catch (Exception er) { };
             return -1;
         }
 

@@ -268,11 +268,13 @@
             // 
             // RiverButton
             // 
+            this.RiverButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.RiverButton.Location = new System.Drawing.Point(588, 769);
             this.RiverButton.Name = "RiverButton";
             this.RiverButton.Size = new System.Drawing.Size(75, 23);
             this.RiverButton.TabIndex = 17;
             this.RiverButton.Text = "River";
+            this.RiverButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.RiverButton.UseVisualStyleBackColor = true;
             this.RiverButton.Visible = false;
             this.RiverButton.Click += new System.EventHandler(this.RiverButton_Click);
@@ -427,8 +429,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.FlopButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "NLP";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
