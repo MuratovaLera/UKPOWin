@@ -60,3 +60,4 @@ C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\MyPoker\bin\Debug\MyPoker.pdb
 C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\MyPoker\obj\Debug\MyPoker.Form1.resources
 C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\MyPoker\obj\Debug\MyPoker.Properties.Resources.resources
 C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\MyPoker\obj\Debug\MyPoker.csproj.GenerateResource.Cache
+C:\Users\sasha\GitHub\UKPOWin(AppVeyor)\UKPOWin\MyPoker\obj\Debug\MyPoker.csprojResolveAssemblyReference.cache

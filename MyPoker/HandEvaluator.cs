@@ -26,7 +26,7 @@ namespace MyPoker
         public int Aut { get; set; }
     }
 
-    class HandEvaluator : Card
+    public class HandEvaluator : Card
     {
 
         private Card[] cards;
@@ -76,25 +76,43 @@ namespace MyPoker
             RobotStat();
             int k=Straight();
             //get number of each suit on hand
-          //  getNumberOfSuit();
-            if (FourOfKind())
+            //  getNumberOfSuit();
+            if (k == 1)
+                return Hand.RoyalFlush;
+            else if (k == 2)
+                return Hand.FlushStraight;
+            else if (FourOfKind())
                 return Hand.FourKind;
             else if (FullHouse())
                 return Hand.FullHouse;
             else if (Flush())
                 return Hand.Flush;
-            else if (k==3)
+            else if (k == 3)
                 return Hand.Straight;
-            else if (k == 2)
-                return Hand.FlushStraight;
-            else if (k == 1)
-                return Hand.RoyalFlush;
             else if (ThreeOfKind())
                 return Hand.ThreeKind;
             else if (TwoPairs())
                 return Hand.TwoPair;
             else if (OnePair())
                 return Hand.OnePair;
+            //if (FourOfKind())
+            //    return Hand.FourKind;
+            //else if (FullHouse())
+            //    return Hand.FullHouse;
+            //else if (Flush())
+            //    return Hand.Flush;
+            //else if (k==3)
+            //    return Hand.Straight;
+            //else if (k == 2)
+            //    return Hand.FlushStraight;
+            //else if (k == 1)
+            //    return Hand.RoyalFlush;
+            //else if (ThreeOfKind())
+            //    return Hand.ThreeKind;
+            //else if (TwoPairs())
+            //    return Hand.TwoPair;
+            //else if (OnePair())
+            //    return Hand.OnePair;
 
             //if nothing
             handValue.HighCard = (int)cards[cards.Length-1].MyValue;
@@ -152,28 +170,28 @@ namespace MyPoker
         {
 
 
-            if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.HEARTS).Length == 5)
+            if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.HEARTS).Length >= 5)
            {
 
                handValue.Total = (int)Array.FindAll(cards, element => element.MySuit == Card.SUIT.HEARTS)[Array.FindAll(cards, element => element.MySuit == Card.SUIT.HEARTS).Length-1].MyValue;
                return true;
            }
            else
-               if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.CLUBS).Length == 5)
+               if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.CLUBS).Length >= 5)
                {
 
                    handValue.Total = (int)Array.FindAll(cards, element => element.MySuit == Card.SUIT.CLUBS)[Array.FindAll(cards, element => element.MySuit == Card.SUIT.CLUBS).Length-1].MyValue;
                    return true;
                }
                else
-                   if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.DIAMONDS).Length == 5)
+                   if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.DIAMONDS).Length >= 5)
                    {
 
                        handValue.Total = (int)Array.FindAll(cards, element => element.MySuit == Card.SUIT.DIAMONDS)[Array.FindAll(cards, element => element.MySuit == Card.SUIT.DIAMONDS).Length-1].MyValue;
                        return true;
                    }
                    else
-                       if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.SPADES).Length == 5)
+                       if (Array.FindAll(cards, element => element.MySuit == Card.SUIT.SPADES).Length >= 5)
                        {
 
                            handValue.Total = (int)Array.FindAll(cards, element => element.MySuit == Card.SUIT.SPADES)[Array.FindAll(cards, element => element.MySuit == Card.SUIT.SPADES).Length-1].MyValue;
@@ -185,20 +203,28 @@ namespace MyPoker
 
         private int Straight()
         {
-            Card[] total = Array.FindAll(cards, element => element.count == 1);
-            if (total.Length == 5)
-            {
+            // Card[] total = Array.FindAll(cards, element => element.count == 1);
+            Card[] total = cards;
+            //   if (total.Length == 5)
+          //  {
                 int i;
-                for (i = 1; i < 5; i++)
+                int j = 0;
+                for (i = 1; i < 7; i++,j++)
                 {
-                    if (total[i - 1].MyValue + 1 != total[i].MyValue)
-                        break;
+                    if (total[i - 1].MyValue == total[i].MyValue)
+                    {
+                        j--;
+                        continue;
+                    }
+                    if (total[i - 1].MyValue + 1 != total[i].MyValue)  
+                        j=0;
+                  
                 }
-                if (i == 5)
+                if (j >= 5)
                 {
                     if (Flush())
                     {
-                        if (total[4].MyValue == Card.VALUE.ACE)
+                        if (total[6].MyValue == Card.VALUE.ACE)
                         {
                             handValue.Total = 8888;
                             return 1;
@@ -217,7 +243,7 @@ namespace MyPoker
                 }
 
 
-            }
+            //}
             return -1;
         }
 

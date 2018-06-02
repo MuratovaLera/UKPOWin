@@ -262,5 +262,10 @@ namespace MyPoker
                 textBox1.Text = "5000";
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

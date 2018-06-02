@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyPoker
 {
-    class Card
+    public class Card
     {
         public enum SUIT
         {

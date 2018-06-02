@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyPoker
 {
-    class DeckOfCards: Card
+    public class DeckOfCards: Card
     {
 
         const int NUMOFCARDS = 52; // number of allcards

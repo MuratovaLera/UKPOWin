@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MyPoker
 {
-    interface Result
+    public interface Result
     {
         void Result();
 
     }
-    class DealCards : DeckOfCards
+   public  class DealCards : DeckOfCards
     {
 
         private Card[] playerHand;
@@ -265,6 +265,7 @@ namespace MyPoker
             my.setControl(Control, playerHandEvaluator, pcHandEvaluator);
             myResult = my;
             Result();
+            
       
 
         }

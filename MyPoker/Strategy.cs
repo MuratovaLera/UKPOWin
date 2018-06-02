@@ -14,7 +14,7 @@ namespace MyPoker
 
     //}
 
-    class Fold: Result
+   public  class Fold: Result
     {
         private Control.ControlCollection Control;
         String who;
@@ -69,7 +69,7 @@ namespace MyPoker
     }
 
 
-    class Check : Result
+    public class Check : Result
     {
         private HandEvaluator playerHandEvaluator;
         private HandEvaluator pcHandEvaluator;
@@ -84,13 +84,6 @@ namespace MyPoker
         public void Result()
         {
 
-
-
-
-            // HandEvaluator playerHandEvaluator = new HandEvaluator(sortedPlayerHand);
-            // playerHandEvaluator.setControl(Control);
-            //  HandEvaluator pcHandEvaluator = new HandEvaluator(sortedPcHand);
-            // pcHandEvaluator.setControl(Control);
             Hand playerHand = playerHandEvaluator.EvaluateHand();
             Hand pcHand = pcHandEvaluator.EvaluateHand();
 
@@ -125,6 +118,41 @@ namespace MyPoker
                         myLabel.Text = "PC WIN!\n   Player's hand: " + playerHand + "\n Total: " + playerHandEvaluator.HandValues.Total + "\n High card: " + playerHandEvaluator.HandValues.HighCard + " \n Computer's hand: " + pcHand + " \nHigh card: " + pcHandEvaluator.HandValues.HighCard;
                     else
                         myLabel.Text = "NO ONE WIN!  \nPlayer's hand: " + playerHand + "  Computer's hand: " + pcHand;
+
+            }
+
+
+        }
+
+        public String ResultForTest(HandEvaluator playerHandEvaluator, HandEvaluator pcHandEvaluator)
+        {
+
+             Hand playerHand = playerHandEvaluator.EvaluateHand();
+             Hand pcHand = pcHandEvaluator.EvaluateHand();
+            
+            if (playerHand > pcHand)
+            {
+                return "Player WIN!";
+
+            }
+            else if (playerHand < pcHand)
+            {
+
+                return "PC WIN!";
+            }
+            else // if hands are the same
+            {
+                if (playerHandEvaluator.HandValues.Total > pcHandEvaluator.HandValues.Total)
+                    return  "Player WIN!";
+                else if (playerHandEvaluator.HandValues.Total < pcHandEvaluator.HandValues.Total)
+                    return  "PC WIN!";
+                else
+                    if (playerHandEvaluator.HandValues.HighCard > pcHandEvaluator.HandValues.HighCard)
+                    return  "Player WIN!";
+                else if (playerHandEvaluator.HandValues.HighCard < pcHandEvaluator.HandValues.HighCard)
+                    return "PC WIN!";
+                else
+                    return "NO ONE WIN!";
 
             }
 
