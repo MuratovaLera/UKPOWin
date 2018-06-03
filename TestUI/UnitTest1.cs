@@ -4,7 +4,6 @@ using TestStack.White.UIItems.WindowItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems;
 using TestStack.White;
-
 namespace TestUI
 {
     [TestFixture]
